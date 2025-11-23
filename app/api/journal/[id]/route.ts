@@ -3,9 +3,12 @@ import { getUserByClerkID } from '@/app/lib/auth';
 import { prisma } from '@/app/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import { NextResponse } from 'next/server';
-import { tr } from 'zod/v4/locales';
 
-export const PATCH = async (req: Request, { params }) => {
+interface RouteParams {
+  params: { id: string };
+}
+
+export const PATCH = async (req: Request, { params }: RouteParams) => {
   const { content } = await req.json();
 
   const { id } = await params;
